@@ -49,7 +49,7 @@ export class JobsService {
   get(id: string): Job {
     const job = this.jobs.get(id);
     if (!job) {
-      throw new NotFoundException(`Job ${id} not found`);
+      throw new NotFoundException(`Задача ${id} не найдена`);
     }
     return job;
   }
@@ -68,11 +68,11 @@ export class JobsService {
     try {
       const { protocol, href } = new URL(url);
       if (protocol !== 'http:' && protocol !== 'https:') {
-        throw new Error();
+        throw new Error('невалидный url');
       }
       return href;
     } catch {
-      throw new BadRequestException(`invalid url: ${String(url)}`);
+      throw new BadRequestException(`невалидный url:${String(url)}`);
     }
   }
 
@@ -84,7 +84,6 @@ export class JobsService {
     const worker = async () => {
       while (next < job.urls.length) {
         const task = job.urls[next++];
-        // skip URLs that were cancelled before we got to them
         if (task.status === 'pending') {
           await this.check(task);
         }
@@ -123,7 +122,7 @@ export class JobsService {
     } catch (err) {
       await this.delay();
       task.status = 'error';
-      task.errorMessage = err instanceof Error ? err.message : 'request failed';
+      task.errorMessage = err instanceof Error ? err.message : 'запрос не выполнен';
     } finally {
       task.finishedAt = new Date();
       task.durationMs = Date.now() - start;
