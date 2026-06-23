@@ -1,0 +1,13 @@
+$radius: 10px;
+$radius-sm: 8px;
+
+$status-colors: (
+  pending: (#aab2c0, rgba(154, 161, 173, 0.14)),
+  in_progress: (#f0b95c, rgba(240, 185, 92, 0.16)),
+  paused: (#7f8694, rgba(127, 134, 148, 0.18)),
+  completed: (#5fd39a, rgba(95, 211, 154, 0.16)),
+  success: (#5fd39a, rgba(95, 211, 154, 0.16)),
+  failed: (#f08a8a, rgba(240, 138, 138, 0.16)),
+  error: (#f08a8a, rgba(240, 138, 138, 0.16)),
+  cancelled: (#9aa1ad, rgba(154, 161, 173, 0.14)),
+);

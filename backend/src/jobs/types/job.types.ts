@@ -1,6 +1,7 @@
 export type JobStatus =
   | 'pending'
   | 'in_progress'
+  | 'paused'
   | 'completed'
   | 'cancelled'
   | 'failed';

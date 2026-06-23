@@ -35,4 +35,10 @@ export class JobsController {
   cancel(@Param('id') id: string) {
     this.jobs.cancel(id);
   }
+
+  @Post(':id/pause')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  pause(@Param('id') id: string) {
+    this.jobs.pause(id);
+  }
 }

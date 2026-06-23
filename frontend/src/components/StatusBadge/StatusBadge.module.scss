@@ -1,0 +1,17 @@
+@use '../../styles/tokens' as *;
+
+.badge {
+  display: inline-block;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+@each $name, $pair in $status-colors {
+  .#{$name} {
+    color: nth($pair, 1);
+    background: nth($pair, 2);
+  }
+}

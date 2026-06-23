@@ -1,0 +1,48 @@
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 22px;
+  min-height: 280px;
+}
+
+.placeholder {
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+
+  h2 {
+    font-size: 18px;
+    margin-bottom: 8px;
+
+    code {
+      color: var(--accent-hover);
+    }
+  }
+}
+
+.cancel {
+  padding: 9px 16px;
+  background: var(--danger);
+  color: #fff;
+  border-radius: 8px;
+  font-weight: 500;
+  white-space: nowrap;
+
+  &:hover:not(:disabled) {
+    background: var(--danger-hover);
+  }
+}
+
+.error {
+  color: var(--bad);
+  font-size: 13px;
+  margin-bottom: 12px;
+}
