@@ -76,10 +76,10 @@ export const useJobsStore = create<JobsState>((set, get) => ({
   selectJob(id) {
     const prev = get().activeJobId
     if (prev === id) return
-    // switching jobs: drop the previous detail so stale data isn't shown
     set({ activeJobId: id, detail: null, detailError: null })
-    // уходя с задания — останавливаем его обработку (бэкенд игнорит завершённые)
-    if (prev) void api.pauseJob(prev)
+    if (prev) {
+      void api.pauseJob(prev).then(() => get().loadJobs())
+    }
   },
 
   async refreshDetail(id) {
@@ -88,7 +88,6 @@ export const useJobsStore = create<JobsState>((set, get) => ({
 
     try {
       const detail = await api.fetchJob(id)
-      // ignore the response if the user already switched to another job
       if (get().activeJobId !== id) return
       set({ detail, detailError: null })
     } catch (err) {
